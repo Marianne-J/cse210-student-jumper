@@ -4,19 +4,19 @@ class Jumper:
   
   
     def get_current_jumper(self):
-       visual = ""
-       for x in range(self.mistakes, len(self.current_jumper)):
-           visual += self.current_jumper[x]
+        visual = ""
+        for x in range(self.mistakes, len(self.current_jumper)):
+            visual += self.current_jumper[x]
 
-     return visual
+        return visual
 
     def get_current_word():
-       """Keeps track of which letters are currently hidden and revealed.
+        """Keeps track of which letters are currently hidden and revealed.
 
           Args:
-             self (Puzzle): An instance of Puzzle.
+            self (Puzzle): An instance of Puzzle.
           Returns:
-             List
+            List
         """
         current_word = []
         still_missing = True
@@ -29,10 +29,10 @@ class Jumper:
                     still_missing = False
                     break
 
-                 else:
+                else:
                     still_missing = True
 
-             if still_missing:
+            if still_missing:
                 current_word.append('_')
 
         return current_word
