@@ -1,6 +1,6 @@
 from game.console import Console
 from game.jumper import Jumper
-from game.player import Player
+from game.puzzle import Puzzle
 
 class Director:
     """A code template for a person who directs the game. The responsibility of 
@@ -24,7 +24,7 @@ class Director:
         """
         self.console = Console()
         self.jumper = Jumper()
-        self.player = Player()
+        self.puzzle = Puzzle()
         self.keep_playing = True
         
     def start_game(self):
