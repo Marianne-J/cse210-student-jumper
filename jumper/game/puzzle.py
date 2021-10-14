@@ -2,6 +2,10 @@
 
 class Puzzle:
   
+    def __init__(self) -> None:
+        self.word = ''
+        self.correct_letter = []
+        
     def check_letter(self, guess):
         """ checks if a guess is both valid and in the puzzle's word.
         if both are true, the letter is added to the list of correct letters
