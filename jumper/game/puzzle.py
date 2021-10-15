@@ -2,8 +2,8 @@
 
 class Puzzle:
   
-    def __init__(self) -> None:
-        self.word = ''
+    def __init__(self):
+        self.word = ""
         self.correct_letter = []
         
     def check_letter(self, guess):
