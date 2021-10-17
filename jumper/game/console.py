@@ -30,3 +30,6 @@ class Console:
             text (string): The text to display.
         """
         print(text)
+
+    def enter(self):
+        print()

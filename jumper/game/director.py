@@ -26,6 +26,7 @@ class Director:
         self.jumper = Jumper()
         self.puzzle = Puzzle()
         self.keep_playing = True
+        self.current_guess = ""
         
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -45,7 +46,16 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        # inputs go here
+
+        self.console.enter()
+        current_word = self.puzzle.get_current_word()
+        self.console.write(current_word)
+
+        self.console.enter()
+        current_jumper = self.jumper.get_current_jumper()
+        self.console.write(current_jumper)
+
+        self.current_guess = self.console.read("Guess a letter [a-z]: ")
         
     def do_updates(self):
         """Updates the important game information for each round of play. In 
@@ -54,7 +64,13 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        # updates go here
+
+        if not self.puzzle.check_letter(self.current_guess):
+            self.jumper.cut_line()
+
+        if self.jumper.mistakes == 5:
+            self.keep_playing = False
+
         
     def do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -63,4 +79,12 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-		# outputs go here
+        
+
+        if not self.keep_playing:
+
+            for i in ["   x   ", "  /|\  ", "  / \  ", "       ", "^^^^^^^"]:
+                self.console.write(i)
+
+            self.console.write(f"The correct word was '{self.puzzle.word}'")
+            self.console.write("You lost!! Better luck next time.")
