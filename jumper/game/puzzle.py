@@ -37,14 +37,14 @@ class Puzzle:
           Returns:
             List
         """
-        current_word = []
+        current_word_list = []
         still_missing = True
 
         for word_letter in self.word:
             for correct_letter in self.correct_letters:
 
                 if correct_letter.lower() == word_letter:
-                    current_word.append(word_letter)
+                    current_word_list.append(word_letter)
                     still_missing = False
                     break
 
@@ -52,6 +52,10 @@ class Puzzle:
                     still_missing = True
 
             if still_missing:
-                current_word.append('_')
+                current_word_list.append('_')
+        
+        current_word = ""
+        for letter in current_word_list:
+            current_word += letter
 
         return current_word
