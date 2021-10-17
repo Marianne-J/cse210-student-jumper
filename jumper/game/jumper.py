@@ -1,5 +1,15 @@
 class Jumper:
-    
+    """A code template for a jumper for a word puzzle game. Keeps track of how many mistakes have been
+    made and uses that to determine and return the current appearance of the jumper.
+
+    Stereotype:
+        GameObject
+
+    Attributes:
+        mistakes (int): the number of mistakes made
+        current_jumper (List): list of strings used to form the display of the jumper
+    """
+
     def __init__(self):
         """The class constructor.
         

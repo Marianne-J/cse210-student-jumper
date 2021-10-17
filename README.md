@@ -34,4 +34,5 @@ root                    (project root folder)
 
 ## Authors
 ---
+Stephen Sanders - stephen64s@byui.edu
 Marianne Johnson - joh20041@byui.edu
