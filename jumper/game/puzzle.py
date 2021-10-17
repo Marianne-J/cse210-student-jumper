@@ -3,10 +3,19 @@ import random
 class Puzzle:
   
     def __init__(self):
-        self.word = self.get_word_from_file()
+        self.word = self.get_word_from_file().replace('\n', '')
         self.correct_letters = []
 
     def get_word_from_file(self):
+        """Parses a .txt file of words, selects a random word from the list, and returns 
+        the selected word.
+
+        Args:
+            self (Puzzle): An instance of Puzzle.
+
+        Returns:
+            String (Word): randomly chosen word
+        """
 
         with open("jumper/game/words.txt", mode="rt") as word_file:
             file = word_file.readlines()
@@ -20,7 +29,7 @@ class Puzzle:
         if both are true, the letter is added to the list of correct letters
 
         Args:
-            guess - str: taken from the console. Should only be one letter
+            String (guess): taken from the console. Should only be one letter
 
         Returns:
             Bool: if the guessed letter is found in the word
@@ -44,7 +53,7 @@ class Puzzle:
           Args:
             self (Puzzle): An instance of Puzzle.
           Returns:
-            List
+            String (current_word): The text to be displayed to the user
         """
         current_word_list = []
         still_missing = True

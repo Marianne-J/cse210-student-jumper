@@ -41,30 +41,19 @@ class Director:
 
     def get_inputs(self):
         """Gets the inputs at the beginning of each round of play. In this case,
-        that means moving the seeker to a new location.
+        that means receiving a guess from the player.
 
         Args:
             self (Director): An instance of Director.
         """
-
-        self.console.enter()
-        current_word = self.puzzle.get_current_word()
-        self.console.write(current_word)
-
-        self.console.enter()
-        current_jumper = self.jumper.get_current_jumper()
-        self.console.write(current_jumper)
-
         self.current_guess = self.console.read("Guess a letter [a-z]: ")
-
-        choice = self.console.read("Guess a letter [a-z]: ")
-
-        if not self.puzzle.check_letter(choice):
-            self.jumper.cut_line()
+        
         
     def do_updates(self):
         """Updates the important game information for each round of play. In 
-        this case, that means the hider watches the seeker.
+        this case, that means the following:
+            > Checking whether a line should be cut
+            > Checking if the game has ended in a loss or victory
 
         Args:
             self (Director): An instance of Director.
@@ -76,6 +65,23 @@ class Director:
         if self.jumper.mistakes == 5:
             self.keep_playing = False
 
+            for i in ["   x   ", "  /|\  ", "  / \  ", "       ", "^^^^^^^"]:
+                self.console.write(i)
+
+            self.console.write(f"The correct word was '{self.puzzle.word}'")
+            self.console.write("You lost!! Better luck next time.")
+        else:
+            puzzle_solved = True
+
+            for char in self.puzzle.get_current_word():
+                if char == "_":
+                    puzzle_solved = False
+            
+            if puzzle_solved:
+                self.keep_playing = False
+                self.console.enter()
+                self.console.write("You correctly guessed the word! Congrats!")
+
         
     def do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -84,15 +90,10 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+        self.console.enter()
+        current_word = self.puzzle.get_current_word()
+        self.console.write(current_word)
 
-        if not self.keep_playing:
-
-            for i in ["   x   ", "  /|\  ", "  / \  ", "       ", "^^^^^^^"]:
-                self.console.write(i)
-
-            self.console.write(f"The correct word was '{self.puzzle.word}'")
-            self.console.write("You lost!! Better luck next time.")
-            
-		# outputs go here
-        self.console.write(self.puzzle.get_current_word())
-        self.console.write(self.jumper.get_current_jumper())
+        self.console.enter()
+        current_jumper = self.jumper.get_current_jumper()
+        self.console.write(current_jumper)

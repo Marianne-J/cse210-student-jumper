@@ -1,10 +1,21 @@
 class Jumper:
     
     def __init__(self):
+        """The class constructor.
+        
+        Args:
+            self (Director): an instance of Director.
+        """
         self.mistakes = 0
         self.current_jumper = ["  ___  ", " /   \ ", "  ___  ", " \   / ", "  \ /  ", "   0   ", "  /|\  ", "  / \  ", "       ", "^^^^^^^"]
 
+
     def cut_line(self):
+        """Used by the director to increment the mistakes counter.
+
+        Args:
+            self (Jumper): An instance of Jumper.
+        """
         self.mistakes += 1
 
     def get_current_jumper(self):
