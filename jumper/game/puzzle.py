@@ -1,6 +1,16 @@
 import random
 
 class Puzzle:
+    """A code template for a word puzzle. This class selects the word for the puzzle, keeps track
+    of which letters have been guessed, and returns a display of the puzzle when called for.
+
+    Stereotype:
+        GameObject
+
+    Attributes:
+        word (String): the word in the puzzle
+        correct_letters (List): list of correctly guessed letters
+    """
   
     def __init__(self):
         self.word = self.get_word_from_file().replace('\n', '')
