@@ -35,9 +35,9 @@ class Director:
             self (Director): an instance of Director.
         """
         while self.keep_playing:
+            self.do_outputs()
             self.get_inputs()
             self.do_updates()
-            self.do_outputs()
 
     def get_inputs(self):
         """Gets the inputs at the beginning of each round of play. In this case,
@@ -56,6 +56,11 @@ class Director:
         self.console.write(current_jumper)
 
         self.current_guess = self.console.read("Guess a letter [a-z]: ")
+
+        choice = self.console.read("Guess a letter [a-z]: ")
+
+        if not self.puzzle.check_letter(choice):
+            self.jumper.cut_line()
         
     def do_updates(self):
         """Updates the important game information for each round of play. In 
@@ -74,12 +79,11 @@ class Director:
         
     def do_outputs(self):
         """Outputs the important game information for each round of play. In 
-        this case, that means the hider provides a hint.
+        this case, that means displaying the current state of the puzzle and jumper
 
         Args:
             self (Director): An instance of Director.
         """
-        
 
         if not self.keep_playing:
 
@@ -88,3 +92,7 @@ class Director:
 
             self.console.write(f"The correct word was '{self.puzzle.word}'")
             self.console.write("You lost!! Better luck next time.")
+            
+		# outputs go here
+        self.console.write(self.puzzle.get_current_word())
+        self.console.write(self.jumper.get_current_jumper())
