@@ -1,11 +1,20 @@
-# here goes the class for the puzzle
+import random
 
 class Puzzle:
   
     def __init__(self):
-        self.word = ""
+        self.word = self.get_word_from_file()
         self.correct_letters = []
-        
+
+    def get_word_from_file(self):
+
+        with open("jumper/game/words.txt", mode="rt") as word_file:
+            file = word_file.readlines()
+            file_length = len(file)
+            word = file[random.randint(0, file_length)]
+
+            return word
+            
     def check_letter(self, guess):
         """ checks if a guess is both valid and in the puzzle's word.
         if both are true, the letter is added to the list of correct letters
